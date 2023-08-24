@@ -2,7 +2,7 @@
 declare namespace ext.webviews {
 
   // Webview rectangle structure
-  export interface ExtWebviewRectangle {
+  export interface Rectangle {
     x: number
     y: number
     width: number
@@ -10,33 +10,33 @@ declare namespace ext.webviews {
   }
 
   // Webview object
-  export interface ExtWebview {
+  export interface Webview {
     /** Webview ID. */
     id: string
     /** Owning extension ID. */
     extension: string
     /** Optional websession used by the webview. */
-    websession?: ExtWebviewWebsessionId
+    websession?: WebsessionId
   }
 
   // Websession ID
-  export interface ExtWebviewWebsessionId {
+  export interface WebsessionId {
     /** Websession ID. */
     id: string
   }
 
   // Window ID
-  export interface ExtWebviewWindowId {
+  export interface WindowId {
     /** Window ID. */
     id: string
   }
 
   // Webview creation properties
-  export interface ExtWebviewProperties {
-    window?: ExtWebviewWindowId
-    bounds?: ExtWebviewRectangle
-    autoResize?: ExtWebviewAutoResize
-    websession?: ExtWebviewWebsessionId
+  export interface WebviewProperties {
+    window?: WindowId
+    bounds?: Rectangle
+    autoResize?: AutoResize
+    websession?: WebsessionId
     devTools?: boolean
     zoomFactor?: number
     javascript?: boolean
@@ -75,7 +75,7 @@ declare namespace ext.webviews {
   }
 
   // Webview auto resize options
-  export interface ExtWebviewAutoResize {
+  export interface AutoResize {
     width?: boolean
     height?: boolean
     horizontal?: boolean
@@ -83,43 +83,43 @@ declare namespace ext.webviews {
   }
 
   // Webview load url options
-  export interface ExtWebviewLoadUrl {
+  export interface LoadUrl {
     httpReferrer?: string
     userAgent?: string
     extraHeaders?: string
   }
 
   // Webview load path options
-  export interface ExtWebviewLoadPath {
+  export interface LoadPath {
     query?: Record<string, string>
     search?: string
     hash?: string
   }
 
   // Webview css options
-  export interface ExtWebviewCSS {
+  export interface CSSOptions {
     origin: 'user' | 'author'
   }
 
   // Webview javascript options
-  export interface ExtWebviewJavaScript {
+  export interface JavaScriptOptions {
     userGesture?: boolean
   }
 
   // Webview adjust selection options
-  export interface ExtWebviewAdjustSelection {
+  export interface AdjustSelection {
     start?: number
     end?: number
   }
 
   // Webview devtools options
-  export interface ExtWebviewDevTools {
+  export interface DevTools {
     mode: 'left' | 'right' | 'bottom' | 'undocked' | 'detach'
     activate?: boolean
   }
 
   // Webview input event
-  export interface ExtWebviewInputEvent {
+  export interface InputEvent {
     modifiers?: Array<
       'shift' | 'control' | 'ctrl' | 'alt' | 'meta' | 'command' | 'cmd' |
       'isKeypad' | 'isAutoRepeat' | 'leftButtonDown' | 'middleButtonDown' |
@@ -140,7 +140,7 @@ declare namespace ext.webviews {
   }
 
   // Webview mouse input event
-  export interface ExtWebviewMouseInputEvent extends ExtWebviewInputEvent {
+  export interface MouseInputEvent extends InputEvent {
     type: 'mouseDown' | 'mouseUp' | 'mouseEnter' | 'mouseLeave' | 'contextMenu' | 'mouseWheel' | 'mouseMove'
     x: number
     y: number
@@ -153,7 +153,7 @@ declare namespace ext.webviews {
   }
 
   // Webview mouse wheel input event
-  export interface ExtWebviewMouseWheelInputEvent extends ExtWebviewMouseInputEvent {
+  export interface MouseWheelInputEvent extends MouseInputEvent {
     type: 'mouseWheel'
     x: number
     y: number
@@ -168,13 +168,13 @@ declare namespace ext.webviews {
   }
 
   // Webview keyboard input event
-  export interface ExtWebviewKeyboardInputEvent extends ExtWebviewInputEvent {
+  export interface KeyboardInputEvent extends InputEvent {
     type: 'rawKeyDown' | 'keyDown' | 'keyUp' | 'char'
     keyCode: string
   }
 
   // Webview event
-  export interface ExtWebviewEvent {
+  export interface WebviewEvent {
     /** Webview ID. */
     id: string
     /** Owning extension ID. */
@@ -182,7 +182,7 @@ declare namespace ext.webviews {
   }
 
   // Webview load failed event
-  export interface ExtWebviewEventLoadFailed {
+  export interface EventLoadFailed {
     errorCode: number
     errorDescription: string
     validatedURL: string
@@ -191,18 +191,18 @@ declare namespace ext.webviews {
   }
 
   // Webview title event
-  export interface ExtWebviewEventTitle {
+  export interface EventTitle {
     title: string
     explicitSet: boolean
   }
 
   // Webview favicon event
-  export interface ExtWebviewEventFavicon {
+  export interface EventFavicon {
     favicons: string[]
   }
 
   // Webview navigation started event
-  export interface ExtWebviewEventNavigationStarted {
+  export interface EventNavigationStarted {
     url: string
     isSameDocument: boolean
     isMainFrame: boolean
@@ -210,32 +210,32 @@ declare namespace ext.webviews {
   }
 
   // Webview navigation done event
-  export interface ExtWebviewEventNavigationDone {
+  export interface EventNavigationDone {
     url: string
     httpResponseCode?: number
     httpStatusText?: string 
   }
 
   // Webview navigation in page done event
-  export interface ExtWebviewEventNavigationInPageDone {
+  export interface EventNavigationInPageDone {
     url: string
     isMainFrame: boolean
     frameId: number
   }
 
   // Webview process shutdown event
-  export interface ExtWebviewEventShutdown {
+  export interface EventShutdown {
     reason: 'clean-exit' | 'abnormal-exit' | 'killed' | 'crashed' | 'oom' | 'launch-failed' | 'integrity-failure'
     exitCode: number
   }
 
   // Webview zoom event
-  export interface ExtWebviewEventZoom {
+  export interface EventZoom {
     direction: 'in' | 'out'
   }
 
   // Webview login event
-  export interface ExtWebviewEventLogin {
+  export interface EventLogin {
     url: string
     isProxy: boolean
     scheme: string
@@ -245,28 +245,28 @@ declare namespace ext.webviews {
   }
 
   // Webview audio event
-  export interface ExtWebviewEventAudio {
+  export interface EventAudio {
     audible: boolean
   }
 
   // Webview theme color event
-  export interface ExtWebviewEventThemeColor {
+  export interface EventThemeColor {
     color: string | null
   }
 
   // Webview target url event
-  export interface ExtWebviewEventTargetUrl {
+  export interface EventTargetUrl {
     url: string
   }
 
   // Webview cursor event
-  export interface ExtWebviewEventCursor {
+  export interface EventCursor {
     type: string
     scale?: number
   }
 
   // Webview context menu event
-  export interface ExtWebviewEventContextMenu {
+  export interface EventContextMenu {
     x: number
     y: number
     frameId: number
@@ -282,7 +282,7 @@ declare namespace ext.webviews {
     titleText: string
     altText: string
     suggestedFilename: string
-    selectionRect: ExtWebviewRectangle
+    selectionRect: Rectangle
     selectionStartOffset: number
     misspelledWord: string
     dictionarySuggestions: string[]
@@ -293,12 +293,12 @@ declare namespace ext.webviews {
       'none' | 'mouse' | 'keyboard' | 'touch' | 'touchMenu' | 'longPress' |
       'longTap' | 'touchHandle' | 'stylus' | 'adjustSelection' | 'adjustSelectionReset'
     )
-    mediaFlags: ExtWebviewEventContextMenuMediaFlags
-    editFlags: ExtWebviewEventContextMenuEditFlags
+    mediaFlags: EventContextMenuMediaFlags
+    editFlags: EventContextMenuEditFlags
   }
 
   // Webview context menu event media flags
-  export interface ExtWebviewEventContextMenuMediaFlags {
+  export interface EventContextMenuMediaFlags {
     inError: boolean
     isPaused: boolean
     isMuted: boolean
@@ -315,7 +315,7 @@ declare namespace ext.webviews {
   }
 
   // Webview context menu event edit flags
-  export interface ExtWebviewEventContextMenuEditFlags {
+  export interface EventContextMenuEditFlags {
     canUndo: boolean
     canRedo: boolean
     canCut: boolean
@@ -327,20 +327,20 @@ declare namespace ext.webviews {
   }
 
   // Webview preferred size event
-  export interface ExtWebviewEventPreferredSize {
+  export interface EventPreferredSize {
     width: number
     height: number
   }
 
   // Webview console message event
-  export interface ExtWebviewEventConsoleMessage {
+  export interface EventConsoleMessage {
     level: number
     message: string
     line: number
   }
 
   // Webview window referrer
-  export interface ExtWebviewEventWindowReferrer {
+  export interface EventWindowReferrer {
     url: string
     policy: (
       'default' | 'unsafe-url' | 'no-referrer-when-downgrade' |
@@ -349,16 +349,16 @@ declare namespace ext.webviews {
   }
 
   // Webview window event
-  export interface ExtWebviewEventWindow {
+  export interface EventWindow {
     url: string
     frameName: string
     features: string
     disposition: 'default' | 'foreground-tab' | 'background-tab' | 'new-window' | 'other'
-    referrer: ExtWebviewEventWindowReferrer
+    referrer: EventWindowReferrer
   }
 
   /** Event handler. */
-  export interface ExtWebviewsHandler<Listener> {
+  interface EventHandler<Listener> {
     /**
      * Register listener.
      * @param listener Listener to invoke.
@@ -372,28 +372,28 @@ declare namespace ext.webviews {
   }
 
   // Generic
-  export function get(webviewId: string): Promise<ExtWebview>
-  export function query(filter?: Partial<ExtWebview>): Promise<ExtWebview[]>
-  export function create(properties?: ExtWebviewProperties): Promise<ExtWebview>
+  export function get(webviewId: string): Promise<Webview>
+  export function query(filter?: Partial<Webview>): Promise<Webview[]>
+  export function create(properties?: WebviewProperties): Promise<Webview>
   export function remove(webviewIds: string | string[]): Promise<void>
-  export function getCurrent(): Promise<ExtWebview>
+  export function getCurrent(): Promise<Webview>
   
   // Parent window
   export function attach(webviewId: string, windowId: string): Promise<void>
   export function detach(webviewId: string): Promise<boolean>
   export function moveTop(webviewId: string): Promise<void>
-  export function getAttachedWindow(webviewId: string): Promise<ExtWebviewWindowId | null>
-  export function setBounds(webviewId: string, bounds: ExtWebviewRectangle): Promise<void>
-  export function getBounds(webviewId: string): Promise<ExtWebviewRectangle>
-  export function setAutoResize(webviewId: string, options?: ExtWebviewAutoResize): Promise<ExtWebviewRectangle>
+  export function getAttachedWindow(webviewId: string): Promise<WindowId | null>
+  export function setBounds(webviewId: string, bounds: Rectangle): Promise<void>
+  export function getBounds(webviewId: string): Promise<Rectangle>
+  export function setAutoResize(webviewId: string, options?: AutoResize): Promise<Rectangle>
 
   // Authentication
   export function login(webviewId: string, username?: string, password?: string): Promise<void>
-  export function getLogin(webviewId: string): Promise<ExtWebviewEventLogin | null>
+  export function getLogin(webviewId: string): Promise<EventLogin | null>
 
   // Navigation
-  export function loadURL(webviewId: string, url: string, options?: ExtWebviewLoadUrl): Promise<void>
-  export function loadFile(webviewId: string, path: string, options?: ExtWebviewLoadPath): Promise<void>
+  export function loadURL(webviewId: string, url: string, options?: LoadUrl): Promise<void>
+  export function loadFile(webviewId: string, path: string, options?: LoadPath): Promise<void>
   export function downloadURL(webviewId: string, url: string): Promise<void>
   export function getURL(webviewId: string, url: string): Promise<string>
   export function isLoading(webviewId: string): Promise<boolean>
@@ -436,9 +436,9 @@ declare namespace ext.webviews {
   export function getUserAgent(webviewId: string): Promise<string>
   
   // Injection
-  export function insertCSS(webviewId: string, css: string, options?: ExtWebviewCSS): Promise<string>
+  export function insertCSS(webviewId: string, css: string, options?: CSSOptions): Promise<string>
   export function removeCSS(webviewId: string, key: string): Promise<void>
-  export function executeJavaScript(webviewId: string, code: string, options?: ExtWebviewJavaScript): Promise<void>
+  export function executeJavaScript(webviewId: string, code: string, options?: JavaScriptOptions): Promise<void>
 
   // Process
   export function getProcessId(webviewId: string): Promise<number>
@@ -458,7 +458,7 @@ declare namespace ext.webviews {
   export function replace(webviewId: string, text: string): Promise<void>
   export function replaceMisspelling(webviewId: string, text: string): Promise<void>
   export function insertText(webviewId: string, text: string): Promise<void>
-  export function sendInput(webviewId: string, options: ExtWebviewMouseInputEvent | ExtWebviewMouseWheelInputEvent | ExtWebviewKeyboardInputEvent): Promise<void>
+  export function sendInput(webviewId: string, options: MouseInputEvent | MouseWheelInputEvent | KeyboardInputEvent): Promise<void>
   export { _delete as delete }
 
   // In-page navigation
@@ -481,7 +481,7 @@ declare namespace ext.webviews {
   export function setVisualZoomLevelLimits(webviewId: string, minimumLevel: number, maximumLevel: number): Promise<void>
 
   // Devtools
-  export function openDevTools(webviewId: string, options?: ExtWebviewDevTools): Promise<void>
+  export function openDevTools(webviewId: string, options?: DevTools): Promise<void>
   export function closeDevTools(webviewId: string): Promise<void>
   export function isDevToolsOpened(webviewId: string): Promise<boolean>
   export function isDevToolsFocused(webviewId: string): Promise<boolean>
@@ -496,78 +496,78 @@ declare namespace ext.webviews {
   // Events
 
   /** Webview created. */
-  export const onCreated: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebview) => void>
+  export const onCreated: EventHandler<(event: WebviewEvent, details: Webview) => void>
   /** Webview removed. */
-  export const onRemoved: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebview) => void>
+  export const onRemoved: EventHandler<(event: WebviewEvent, details: Webview) => void>
   /** The document in the top-level frame finished loading. */
-  export const onDomReady: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onDomReady: EventHandler<(event: WebviewEvent) => void>
   /** Page started loading. */
-  export const onLoadStarted: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onLoadStarted: EventHandler<(event: WebviewEvent) => void>
   /** Page stopped loading. */
-  export const onLoadStopped: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onLoadStopped: EventHandler<(event: WebviewEvent) => void>
   /** Page load is done. */
-  export const onLoadFinished: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onLoadFinished: EventHandler<(event: WebviewEvent) => void>
   /** Page load failed. */
-  export const onLoadFailed: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventLoadFailed) => void>
+  export const onLoadFailed: EventHandler<(event: WebviewEvent, details: EventLoadFailed) => void>
   /** Page load cancelled. */
-  export const onLoadCancelled: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventLoadFailed) => void> 
+  export const onLoadCancelled: EventHandler<(event: WebviewEvent, details: EventLoadFailed) => void> 
   /** Page title updated. */
-  export const onPageTitleUpdated: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventTitle) => void>
+  export const onPageTitleUpdated: EventHandler<(event: WebviewEvent, details: EventTitle) => void>
   /** Page favicon updated. */
-  export const onPageFaviconUpdated: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventFavicon) => void>
+  export const onPageFaviconUpdated: EventHandler<(event: WebviewEvent, details: EventFavicon) => void>
   /** Page navigation started. */
-  export const onNavigationStarted: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventNavigationStarted) => void>
+  export const onNavigationStarted: EventHandler<(event: WebviewEvent, details: EventNavigationStarted) => void>
   /** Page navigation redirected. */
-  export const onNavigationRedirected: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventNavigationStarted) => void>
+  export const onNavigationRedirected: EventHandler<(event: WebviewEvent, details: EventNavigationStarted) => void>
   /** Page navigation ended. */
-  export const onNavigationDone: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventNavigationDone) => void>
+  export const onNavigationDone: EventHandler<(event: WebviewEvent, details: EventNavigationDone) => void>
   /** Page navigation ended without changing url. */
-  export const onNavigationInPageDone: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventNavigationInPageDone) => void>
+  export const onNavigationInPageDone: EventHandler<(event: WebviewEvent, details: EventNavigationInPageDone) => void>
   /** Process shutdown. */
-  export const onShutdown: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventShutdown) => void> 
+  export const onShutdown: EventHandler<(event: WebviewEvent, details: EventShutdown) => void> 
   /** Page became unresponsive. */
-  export const onPageUnresponsive: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onPageUnresponsive: EventHandler<(event: WebviewEvent) => void>
   /** Page become responsive again. */
-  export const onPageResponsive: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onPageResponsive: EventHandler<(event: WebviewEvent) => void>
   /** Input event. */
-  export const onInput: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewInputEvent) => void>
+  export const onInput: EventHandler<(event: WebviewEvent, details: InputEvent) => void>
   /** Webview entered fullscreen mode. */
-  export const onEnteredFullscreen: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onEnteredFullscreen: EventHandler<(event: WebviewEvent) => void>
   /** Webview exited fullscreen mode. */
-  export const onExitedFullscreen: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onExitedFullscreen: EventHandler<(event: WebviewEvent) => void>
   /** User changed zoom level. */
-  export const onZoomChanged: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventZoom) => void>
+  export const onZoomChanged: EventHandler<(event: WebviewEvent, details: EventZoom) => void>
   /** Webview gained focus. */
-  export const onFocused: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onFocused: EventHandler<(event: WebviewEvent) => void>
   /** Webview lost focus. */
-  export const onUnfocused: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onUnfocused: EventHandler<(event: WebviewEvent) => void>
   /** Devtools opened. */
-  export const onDevtoolsOpened: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onDevtoolsOpened: EventHandler<(event: WebviewEvent) => void>
   /** Devtools closed. */
-  export const onDevtoolsClosed: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onDevtoolsClosed: EventHandler<(event: WebviewEvent) => void>
   /** Devtools focused. */
-  export const onDevtoolsFocused: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onDevtoolsFocused: EventHandler<(event: WebviewEvent) => void>
   /** Devtools instructed page to reload. */
-  export const onDevtoolsReload: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onDevtoolsReload: EventHandler<(event: WebviewEvent) => void>
   /** Page requested login. */
-  export const onLogin: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventLogin) => void>
+  export const onLogin: EventHandler<(event: WebviewEvent, details: EventLogin) => void>
   /** Media started playing. */
-  export const onMediaStarted: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onMediaStarted: EventHandler<(event: WebviewEvent) => void>
   /** Media is paused or done playing. */
-  export const onMediaPaused: ExtWebviewsHandler<(event: ExtWebviewEvent) => void>
+  export const onMediaPaused: EventHandler<(event: WebviewEvent) => void>
   /** Page theme changed. */
-  export const onThemeColorChanged: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventThemeColor) => void>
+  export const onThemeColorChanged: EventHandler<(event: WebviewEvent, details: EventThemeColor) => void>
   /** Mouse moved over a link or keyboard moved the focus to a link. */
-  export const onUpdatedTargetUrl: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventTargetUrl) => void>
+  export const onUpdatedTargetUrl: EventHandler<(event: WebviewEvent, details: EventTargetUrl) => void>
   /** Cursor type changed. */
-  export const onCursorChanged: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventCursor) => void>
+  export const onCursorChanged: EventHandler<(event: WebviewEvent, details: EventCursor) => void>
   /** Context menu opened. */
-  export const onContextMenu: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventContextMenu) => void>
+  export const onContextMenu: EventHandler<(event: WebviewEvent, details: EventContextMenu) => void>
   /** Preferred size changed. */
-  export const onPreferredSizeChanged: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventPreferredSize) => void>
+  export const onPreferredSizeChanged: EventHandler<(event: WebviewEvent, details: EventPreferredSize) => void>
   /** Console message was logged. */
-  export const onConsoleMessage: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventConsoleMessage) => void>
+  export const onConsoleMessage: EventHandler<(event: WebviewEvent, details: EventConsoleMessage) => void>
   /** New window is requested. */
-  export const onWindowOpen: ExtWebviewsHandler<(event: ExtWebviewEvent, details: ExtWebviewEventWindow) => void>
+  export const onWindowOpen: EventHandler<(event: WebviewEvent, details: EventWindow) => void>
 
 }
