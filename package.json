@@ -1,0 +1,15 @@
+{
+  "name": "@extpkg/types-webviews",
+  "version": "1.0.0",
+  "description": "Types for EXT webviews module",
+  "author": "EXT, Inc.",
+  "license": "MIT",
+  "keywords": ["types", "ext"],
+  "repository": {
+	"type": "git",
+	"url": "https://github.com/extpkg/types-webviews.git"
+  },
+  "publishConfig": {
+	"access": "public"
+  }
+}
