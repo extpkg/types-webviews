@@ -1,6 +1,6 @@
 {
   "name": "@extpkg/types-webviews",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Types for EXT webviews module",
   "author": "EXT, Inc.",
   "license": "MIT",
