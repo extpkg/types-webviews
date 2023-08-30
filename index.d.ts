@@ -1181,10 +1181,9 @@ declare namespace ext.webviews {
   /**
    * Get the title of the webview.
    * @param webviewId The ID of the webview.
-   * @param url The URL of the webview.
    * @returns The promise resolves with the title.
    */
-  export function getTitle(webviewId: string, url: string): Promise<string>
+  export function getTitle(webviewId: string): Promise<string>
 
   /**
    * Set whether to ignore menu shortcuts in the webview.
